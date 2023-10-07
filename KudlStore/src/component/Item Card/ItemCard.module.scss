@@ -17,7 +17,7 @@
         top: 5px;
         right: 5px;
         font-size: 0.7rem;
-        color: $primary_font_color;
+        color: $black;
     }
 
     .image_sec {
@@ -41,7 +41,7 @@
             cursor: pointer;
 
             &:hover {
-                color: $nav_color;
+                color: $black;
             }
         }
         .qnty {

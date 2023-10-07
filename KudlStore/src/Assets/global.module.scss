@@ -1,7 +1,9 @@
 $border: 1px solid #ffffff;
-$nav_color : #0350c5;
+// $nav_color : #0350c5;
+$nav_color : #fffbf1;
 $primary_font_color: #fff;
 $gold_color : #F8DE22;
+$black : #161616;
 $border_radius : 8px;
 $screen_width :1280px;
 
@@ -25,7 +27,7 @@ $screen_width :1280px;
 
 @mixin white_button ($radius) {
   background-color: $primary_font_color;
-  color : $nav_color;
+  color : $black;
   border: none;
   border-radius: $radius;
   @include display(row, center, center);
@@ -34,7 +36,7 @@ $screen_width :1280px;
 
 @mixin blue_button ($radius) {
   background-color: $nav_color;
-  color :  $primary_font_color;
+  color :  $black;
   border: none;
   border-radius: $radius;
   @include display(row, center, center);

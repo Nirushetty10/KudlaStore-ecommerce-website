@@ -21,6 +21,13 @@ const AdminProductList = (props) => {
            setCount(pageCount);
         }
     },[data])
+
+    useEffect(()=> {
+       if(props.refetch) {
+        refetchData();
+        props.disableRefetch();
+       }
+    },[props.refetch])
     
     const handleChange = (event, value) => {
        setPage(value);
@@ -47,11 +54,16 @@ const AdminProductList = (props) => {
             console.log(error);
         }
     }
+
+    async function refetchData () {
+        refetch(`${config.url}/api/product`);
+    }
+
   return (
     <div className={classes.productList_layout}>
         <DeleteModal handleDelete={onDeleteHandler} handleCancel={onCancelHandler} toggle={toggleModal}/>
         <div className={classes.product_grid}>
-           {pageData.map(item => <AdminItemCard key={item._id} data={item} deleteClick={onDeleteClick}/>)}
+           {pageData.map(item => <AdminItemCard key={item._id} data={item} deleteClick={onDeleteClick} fetchData={refetchData}/>)}
         </div>
         <div className={classes.product_pagination}>
             <Stack spacing={5}>

@@ -9,13 +9,13 @@ const BackDrop = () => {
 }
 
 const ModalOverlay = (props) => {
-  const [title, setTitle] = useState(props.data.title);
-  const [desc, setDesc] = useState(props.data.description);
-  const [rating, setRating] = useState(props.data.rating);
-  const [category, setCategory] = useState(props.data.category[0]);
-  const [bestSeller, setBestSeller] = useState(props.data.isBestSeller);
-  const [unitAndPrice, setUnitAndPrice] = useState(props.data.unitAndPrice);
-  const [images, setImages] = useState(props.data.image);
+  const [title, setTitle] = useState(props.type === "createProduct" ? "" :props.data.title);
+  const [desc, setDesc] = useState(props.type === "createProduct" ? "" :props.data.description);
+  const [rating, setRating] = useState(props.type === "createProduct" ? 0 :props.data.rating);
+  const [category, setCategory] = useState(props.type === "createProduct" ? "" :props.data.category[0]);
+  const [bestSeller, setBestSeller] = useState(props.type === "createProduct" ? false :props.data.isBestSeller);
+  const [unitAndPrice, setUnitAndPrice] = useState(props.type === "createProduct" ? [] :props.data.unitAndPrice);
+  const [images, setImages] = useState(props.type === "createProduct" ? "" : props.data.image);
   const [selectedImage, setSelectedImage] = useState([]);
   const [unit, setUnit] = useState("");
   const [price, setPrice] = useState("");
@@ -108,15 +108,25 @@ const ModalOverlay = (props) => {
   for (let i = 0; i < selectedImage.length; i++) {
     formData.append(`image[${i}]`, selectedImage[i]);
   }
-  console.log(formData);
-
-
+  
     try {
-      const res = await axios.post("http://localhost:4000/api/product",formData,{
+      if(props.type === "createProduct") {
+        const res = await axios.post(`http://localhost:4000/api/product`,formData,{
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }})
+        if (res.status === 200) {
+          props.onCloseModal();
+      } else {
+      const res = await axios.put(`http://localhost:4000/api/product/${props.data._id}`,formData,{
         headers: {
           'Content-Type': 'multipart/form-data',
         }})
-      console.log(res);
+      if (res.status === 200) {
+        props.onCloseModal();
+      }
+    }
+  }
     } catch (error) {
       console.log(error.message);
     }
@@ -184,7 +194,8 @@ const ModalOverlay = (props) => {
       <div className={classes.images}>
       <span className={classes.heading}>Images</span>
           <div className={classes.imageSec_container}>
-            {images.map((img,index) => {
+            {[...Array(4)].map((_,index) => {
+              const img = images[index];
               return <div className={classes.img_box}>
                  <img src={`http://localhost:4000/${img}`}/>
                 <input type="file" name="" id="" onChange={(e) =>handleImageChange(e,index)}/>
@@ -194,7 +205,7 @@ const ModalOverlay = (props) => {
       </div>
       <div className={classes.buttons}>
         <button type="button" onClick={handleSubmit}>Submit</button>
-        <button type="button" onClick={props.onCancel}>Cancel</button>
+        <button type="button" onClick={() => props.onCloseModal()}>Cancel</button>
       </div>
     </div>
   );
@@ -204,7 +215,7 @@ const EditModal = (props) => {
   return (
     <>
     {ReactDOM.createPortal(<BackDrop/>, document.getElementById("backdrop-root"))}
-    {ReactDOM.createPortal(<ModalOverlay data={props.data} onCancel={props.onCancel}/>, document.getElementById("overlay-root"))}
+    {ReactDOM.createPortal(<ModalOverlay data={props.data} onCloseModal={props.onCloseModal} type={props.type}/>, document.getElementById("overlay-root"))}
     </>
   )
 }

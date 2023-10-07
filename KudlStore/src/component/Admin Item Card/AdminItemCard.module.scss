@@ -4,6 +4,9 @@
     @include display(column, space-between, flex-start);
     border: 1px solid rgb(177, 174, 174);
     padding: 1rem;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-y: hidden;
 
     .img_box {
         @include custom_size(100%, 50% , null);
@@ -13,7 +16,7 @@
             object-fit: cover;
         }
     }
-    h2 {
+    .title {
         font-size: 0.8rem;
     }
     .product_priceandunit {

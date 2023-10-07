@@ -10,11 +10,11 @@ const SingleCategory = (props) => {
         navigate(`/category/${title}`);
       }
 
-  return ( <div key={id} className={classes.Category_card} >
+  return ( <div key={id} className={`${classes.Category_card} ${classes["class" + props.number]}`} onClick={viewCategoryPage}>
             <div className={classes.image_sec}>
                 <img src={image} alt="" />
             </div>
-            <div className={classes.titel_sec} onClick={viewCategoryPage}>
+            <div className={classes.titel_sec} >
                <h3>{title}</h3>
             </div>
         </div>

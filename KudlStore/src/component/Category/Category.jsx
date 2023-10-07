@@ -6,41 +6,41 @@ import SingleCategory from "../Single Category/SingleCategory";
 const data = [
     {
         id : 1,
-        image : "https://rukminim2.flixcart.com/flap/128/128/image/50474c.jpg?q=100",
+        image : "https://staticin.sadhguru.org/in/pub/media/wysiwyg/homepage/shop-by/SBC-Bloom.jpg",
         title : "Staples"
     },
     {
         id : 2,
-        image : "https://rukminim2.flixcart.com/flap/128/128/image/9fbd36.jpg?q=100",
+        image : "https://staticin.sadhguru.org/in/pub/media/wysiwyg/homepage/shop-by/Temple-New.jpg",
         title : "Snacks & Beverages"
     },{
         id : 3,
-        image : "https://rukminim2.flixcart.com/flap/128/128/image/ac8550.jpg?q=100",
+        image : "https://staticin.sadhguru.org/in/pub/media/wysiwyg/homepage/shop-by/Natural-Foods-New.jpg",
         title : "Packaged Food"
     },
     {
         id : 4,
-        image : "https://rukminim2.flixcart.com/flap/128/128/image/7670e2.jpg?q=100",
+        image : "https://staticin.sadhguru.org/in/pub/media/wysiwyg/homepage/shop-by/Health-New.jpg",
         title : "Baby Care"
     },
     {
         id : 5,
-        image : "https://rukminim2.flixcart.com/flap/128/128/image/b7ade9.jpg?q=100",
+        image : "https://staticin.sadhguru.org/in/pub/media/wysiwyg/homepage/shop-by/Clothing-New.jpg",
         title : "Household Care"
     },
     {
         id : 6,
-        image : "https://rukminim2.flixcart.com/flap/128/128/image/8014b1.jpg?q=100",
+        image : "https://staticin.sadhguru.org/in/pub/media/wysiwyg/homepage/shop-by/Yoga-Store-New.jpg",
         title : "Dairy & Eggs"
     },
     {
         id : 7,
-        image : "https://rukminim2.flixcart.com/flap/128/128/image/e6e0ecc56771471a.png?q=100",
+        image : "https://staticin.sadhguru.org/in/pub/media/wysiwyg/homepage/shop-by/Home-Decor-New.jpg",
         title : "Home & Kitchen"
     },
     {
         id : 8,
-        image : "https://rukminim2.flixcart.com/flap/128/128/image/2cd089facd6afa5a.jpg?q=100",
+        image : "https://staticin.sadhguru.org/in/pub/media/wysiwyg/homepage/shop-by/Yoga-Store-New.jpg",
         title : "Fruits & Vegitables"
     },
 ]
@@ -54,7 +54,7 @@ const Category = () => {
             <h3>Shop By Category</h3>
         </div>
          <div className={classes.category_content}>
-           {data.map(item => <SingleCategory item={item}/>)}
+           {data.map((item,index) => <SingleCategory item={item} number={index}/>)}
          </div>
        </div>
     </div>

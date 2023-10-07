@@ -16,7 +16,8 @@
         width: 100%;
         max-width: $screen_width;
         @include display(row,space-between,center);
-        color: $primary_font_color;
+        // color: $primary_font_color;
+        color: $black;
 
         .logo {
             letter-spacing: 2px;

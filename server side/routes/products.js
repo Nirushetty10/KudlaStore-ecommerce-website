@@ -8,7 +8,8 @@ import { verifyAdmin } from './../uitls/verifyToken.js';
 router.post("/", createProduct);
 
 //UPDATE PRODUCT
-router.put("/:id", verifyAdmin, updateProduct);
+// router.put("/:id", verifyAdmin, updateProduct);
+router.put("/:id", updateProduct);
 
 //DELETE PRODUCT
 // router.delete("/:id", verifyAdmin, deleteProduct);

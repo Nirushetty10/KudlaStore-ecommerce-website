@@ -8,16 +8,18 @@ const AdminItemCard = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onModalCancel = () => {
+    props.fetchData();
     setIsModalOpen(false);
   }
+  
   return (
     <>
-    {isModalOpen && <EditModal onCancel={onModalCancel} data={props.data}/>}
+    {isModalOpen && <EditModal onCloseModal={onModalCancel} data={props.data}/>}
     <div className={classes.item_box}>
       <div className={classes.img_box}>
       <img src={`http://localhost:4000/${props.data.image[0]}`} alt="" />
       </div>
-        <h2>{props.data.title.slice(0,60)}</h2>
+        <h2 className={classes.title}>{props.data.title.slice(0,60)}</h2>
         <div className={classes.product_priceandunit}>
           <span className={classes.product_price}>{props.data.unitAndPrice[0].price}₹</span>
           <span className={classes.product_unit}>{props.data.unitAndPrice[0].unit}</span>

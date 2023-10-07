@@ -44,12 +44,29 @@ export const createProduct = async (req,res) => {
 
 export const updateProduct = async (req,res) => {
     try {
+        upload(req, res, async (err) => {
+            if (err) {
+                console.error('File upload failed:', err);
+              return res.status(500).json({ error: 'File upload failed', details: err });
+            }
+        const {image,...other} = req.body;
+        const imagePath = req.files.map((file) => file.path);
+        const unitAndPrice = [];
+        for (let i = 0; i < other.unitAndPrice.length; i++) {
+            unitAndPrice.push(JSON.parse(other.unitAndPrice[i]));
+        }
+        const updatedFeilds = {
+            ...other,
+            unitAndPrice,
+            image: imagePath.length > 0 ? imagePath : image
+        }
         const updatedProduct = await Product.findByIdAndUpdate(req.params.id, {
-           $set : req.body
+           $set : updatedFeilds
         },
         { new : true}
         )
         res.status(200).json(updatedProduct);
+    })
     } catch (error) {
         res.status(500).json("Product not found");
     }
