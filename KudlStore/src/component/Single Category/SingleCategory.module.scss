@@ -1,0 +1,30 @@
+@import "../../Assets/global.module.scss";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+.Category_card {
+    @include custom_size(8rem , 10rem , null);
+    cursor: pointer;
+
+    .image_sec {
+        @include custom_size(100%, 70%, null);
+        @include display (row , center , center);
+
+        img {
+            @include custom_size(70%, 70%, null);
+            object-fit: cover;
+        }
+    }
+    .titel_sec {
+        text-align: center;
+        h3 {
+            font-family: "Roboto";
+            font-size: 0.9rem;
+            margin: 0;
+
+            &:hover {
+                color: $nav_color;
+                font-size: 1rem;
+            }
+        }
+    }
+}
