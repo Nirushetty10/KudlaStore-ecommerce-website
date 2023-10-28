@@ -106,7 +106,7 @@ export const getAllProducts = async(req,res)=> {
 
 export const getAllProduct = async(req,res)=> {
     try {
-        let products = await Product.find().limit(12);
+        let products = await Product.find().limit(8);
         res.status(200).json(products);
     } catch(err) {
         res.status(500).json("products not found");
@@ -124,7 +124,7 @@ export const getAllProductsByCategory = async(req,res)=> {
 
 export const getTopRatedProducts = async(req,res)=> {
     try {
-        let products = await Product.find().sort({rating : -1}).limit(6);
+        let products = await Product.find().sort({rating : -1}).limit(4);
         res.status(200).json(products);
     } catch(err) {
         res.status(500).json("products not found");
@@ -142,7 +142,7 @@ export const getAllTopRatedProducts = async(req,res)=> {
 
 export const getBestSellerProducts = async(req,res)=> {
     try {
-        let products = await Product.find({isBestSeller : true}).limit(6);
+        let products = await Product.find({isBestSeller : true}).limit(4);
         res.status(200).json(products);
     } catch(err) {
         res.status(500).json("products not found");

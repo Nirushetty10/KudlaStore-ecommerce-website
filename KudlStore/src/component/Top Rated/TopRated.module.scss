@@ -27,6 +27,7 @@
 
         }
         .category_items {
+            @include custom_size(100%, 22rem , null);
             @include display(row, space-between, center);
             gap: 1.5rem;
         }

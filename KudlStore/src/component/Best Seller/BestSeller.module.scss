@@ -24,11 +24,13 @@
             .view_all_button {
                 @include custom_size(8rem, 2rem , null);
                 @include white_button(null);
+                border: 1px solid rgb(146, 146, 146);
                 font-size: 1rem;
             }
 
         }
         .category_items {
+            @include custom_size(100%, 22rem , null);
             @include display(row, space-between, center);
             gap: 1.5rem;
         }
